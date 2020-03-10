@@ -1,0 +1,66 @@
+body {
+    /* background-color: rgb(160, 64, 0); */
+    /* padding: 0; */
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  #canvas {
+    background-color: green;
+    width: 600px;
+    height: 700px;
+  }
+  
+  .game-intro {
+    padding-top: 200px;
+    width: 600px;
+    background-image: url(./images/Bludger.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 4
+    00px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* justify-content: flex-start; */
+    
+    /* padding: 0% 10%; */
+    /* width: 300px; */
+    /* height: 700px; */
+  }
+  
+  .game-intro p {
+    font-size: 18px;
+    font-family: "Verdana"
+  }
+
+  .snitch-img {
+    width: 500px;
+  }
+  
+  /* .logo-img {
+    width: 150px;
+    position: relative;
+  } */
+  
+  .arrows-img {
+    width: 150px;
+  }
+  
+  body button {
+    font-size: 30px;
+    background-color: #870007;
+    color: #fff;
+    padding: 20px 40px;
+    border: 0;
+    /* box-shadow: 0; */
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  #game-board {
+      float: left;
+      padding: 20px 0px;
+  }
+  
