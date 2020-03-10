@@ -12,21 +12,22 @@ body {
 
   #canvas {
     background-color:rgb(170,210,114);
-    width: 600px;
-    height: 700px;
+    /* width: 300px;
+    height: 400px; */
     border: 2px solid black;
   }
   
   .game-intro {
-    padding-top: 200px;
+    /* padding-top: 200px; */
     width: 600px;
+    height: 400px;
     /* background-image: url(./images/Bludger.png);
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: 400px; */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     /* justify-content: flex-start; */
     
     /* padding: 0% 10%; */

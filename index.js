@@ -5,14 +5,6 @@ window.onload = () => {
     let id = null;
     
     let start = false;
-    
-    // document.getElementById('start-button').onclick = () => {
-    //   startGame();
-    // };
-    
-    // function startGame() {
-    //   gameUpdate();
-    // }
 
 
     class Component {
@@ -22,18 +14,16 @@ window.onload = () => {
         this.width = width;
         this.height = height;
         this.speedX = 0;
-        // this.speedY = 0;
     }
   
       newPos(){
-        if (this.x >= 0 && this.x <= 450){
+        if (this.x >= 0 && this.x <= canvas.width - this.width){
           this.x += this.speedX;
         } else if (this.x < 0){
           this.x += 1;
-        } else if (this.x > 450) {
+        } else if (this.x >= canvas.width - this.width) {
           this.x -= 1;
         }
-        // this.y += this.speedY;
       }
 
       left() {
@@ -63,10 +53,8 @@ window.onload = () => {
       constructor(x){
         this.x = x;
         this.y = 0;
-        this.width = 30;
-        this.height = 30;
-        
-        
+        this.width = 25;
+        this.height = 25;
       }
 
       createObstacle(){ 
@@ -75,10 +63,10 @@ window.onload = () => {
         // context.fillStyle = "blue";
         // context.rect(this.x, this.y, this.width, this.height);
         // context.fill();
+        // }
         this.bludgerImg = new Image();
         this.bludgerImg.src = './images/Bludger.png';
         context.drawImage(this.bludgerImg, this.x, this.y, this.width, this.height);
-        // }
       }
 
       // createSnitch(){
@@ -105,7 +93,7 @@ window.onload = () => {
       }
     }
 
-    let player = new Component(220, 650, 50, 50);
+    let player = new Component(canvas.width/2, canvas.height - 25, 25, 25);
     let frames = 0;
     let bludgers = [];
     let lifes = 10;
