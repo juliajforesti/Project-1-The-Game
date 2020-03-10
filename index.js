@@ -11,22 +11,43 @@ window.onload = () => {
 
 
     class Component {
-    constructor(x, y, width, height){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.speedX = 0;
-    }
-  
-      newPos(){
-        if (this.x >= 0 && this.x <= canvas.width - this.width){
-          this.x += this.speedX;
-        } else if (this.x < 0){
-          this.x += 1;
-        } else if (this.x >= canvas.width - this.width) {
-          this.x -= 1;
+      constructor(x, y, width, height){
+          this.x = x;
+          this.y = y;
+          this.width = width;
+          this.height = height;
+          this.speedX = 0;
+          this.direction = 'l';
+          this.hpImg = new Image();
+          this.hpImg.src = './images/hp.png';
+          this.hpImgDir = new Image();
+          this.hpImgDir.src = './images/hpDir.png';
+      }
+
+      createPlayer(){
+        if (this.direction === 'l'){
+          context.drawImage(this.hpImg, this.x, this.y, this.width,this.height);
+        } else {
+          context.drawImage(this.hpImgDir, this.x, this.y, this.width,this.height);
         }
+      }
+
+      // rightPlayer(){
+      //   this.hpImg = new Image();
+      //   this.hpImg.src = './images/hpDir.png';
+      //   context.drawImage(this.hpImg, this.x, this.y, this.width,this.height);
+      // }
+      
+
+    
+      newPos(){
+      if (this.x >= 0 && this.x <= canvas.width - this.width){
+        this.x += this.speedX;
+      } else if (this.x < 0){
+        this.x += 1;
+      } else if (this.x >= canvas.width - this.width) {
+        this.x -= 1;
+      }
       }
 
       left() {
@@ -96,17 +117,17 @@ window.onload = () => {
       }
     }
 
-    let player = new Component(canvas.width/2, canvas.height - 25, 25, 25);
+    let player = new Component(canvas.width/2, canvas.height - 70, 50, 50);
     let frames = 0;
     let bludgers = [];
-    let lifes = 1;
+    let lifes = 5;
     let snitch = [];
 
 
     // criando novos obstaculos + guardando no array + movendo
     function createObstaclesFunction(){
       frames += 1;
-      if (frames % 50 === 0) {
+      if (frames % 40 === 0) {
         bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
         console.log('bludger criado!')
         // console.log(bludgers);
@@ -203,15 +224,16 @@ window.onload = () => {
       context.clearRect(0, 0, 600, 700);
       
       // PRINT O PLAYER
+      player.createPlayer();
       player.newPos();
       
-      context.beginPath();
-      context.lineWidth = "3";
-      context.lineStyle = 'black'
-      context.fillStyle = "rgb(181,78,86)";
-      context.rect(player.x, player.y, player.width, player.height);
-      context.fill();
-      context.stroke();
+      // context.beginPath();
+      // context.lineWidth = "3";
+      // context.lineStyle = 'black'
+      // context.fillStyle = "rgb(181,78,86)";
+      // context.rect(player.x, player.y, player.width, player.height);
+      // context.fill();
+      // context.stroke();
 
       // PRINT OBSTACULOS (bludger and snitch)
       createObstaclesFunction();
@@ -235,10 +257,12 @@ window.onload = () => {
     document.onkeydown = function(e) {
       switch (e.keyCode) {
         case 37: // left arrow
-              player.speedX -= 4;
+        player.speedX -= 4;
+              player.direction = 'l'
           break;
         case 39: // right arrow
-            player.speedX += 4;
+        player.speedX += 4;
+            player.direction = 'r'
           break;
         case 13: // enter
             if(!start) {
