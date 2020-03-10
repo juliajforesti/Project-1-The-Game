@@ -6,6 +6,9 @@ window.onload = () => {
     
     let start = false;
 
+    let hpsong = new Audio();
+    hpsong.src = './images/Hedwig s Theme.mp3';
+
 
     class Component {
     constructor(x, y, width, height){
@@ -53,8 +56,8 @@ window.onload = () => {
       constructor(x){
         this.x = x;
         this.y = 0;
-        this.width = 25;
-        this.height = 25;
+        this.width = 30;
+        this.height = 30;
       }
 
       createObstacle(){ 
@@ -69,11 +72,11 @@ window.onload = () => {
         context.drawImage(this.bludgerImg, this.x, this.y, this.width, this.height);
       }
 
-      // createSnitch(){
-      //   this.snitchImg = new Image();
-      //   this.snitchImg.src = './images/snitch.png';
-      //   context.drawImage(this.snitchImg, this.x, this.y, this.width,this.height);
-      // }
+      createSnitch(){
+        this.snitchImg = new Image();
+        this.snitchImg.src = './images/black-snitch.png';
+        context.drawImage(this.snitchImg, this.x, this.y, this.width,this.height);
+      }
 
       moveObstacle(){
         this.y += 5;
@@ -96,50 +99,41 @@ window.onload = () => {
     let player = new Component(canvas.width/2, canvas.height - 25, 25, 25);
     let frames = 0;
     let bludgers = [];
-    let lifes = 10;
-    // let snitch = [];
+    let lifes = 1;
+    let snitch = [];
 
 
     // criando novos obstaculos + guardando no array + movendo
     function createObstaclesFunction(){
       frames += 1;
-      if (frames % 100 === 0) {
-        console.log('criado!')
-        bludgers.push(new Obstacle(Math.floor(Math.random()*canvas.width)));
-        console.log(bludgers);
-      };
+      if (frames % 50 === 0) {
+        bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
+        console.log('bludger criado!')
+        // console.log(bludgers);
+      }
+      if (frames % 300 === 0) {
+        console.log('snitch criado')
+        setTimeout(function() {
+          snitch.push(new Obstacle(Math.floor(Math.random()* (canvas.width - 25))))
+        }, 2000)
+      }
     }
 
     function moveObstaclesFunction(){
       bludgers.forEach((elem, index) => {
         elem.createObstacle();
         elem.moveObstacle();
-        // tira bludger da array quando sai do canvas
         if (elem.y >= canvas.height){
           bludgers.splice(index, 1);
         }
       })
-    }
-
-    // GOLDEN SNITCH
-    // function createSnitch() {
-    //   frames += 1;
-    //   if (frames % 100 === 0) {
-    //     snitch.push(new Obstacle(Math.floor(Math.random()* canvas.width)));
-    //   }
-    // }
-    // function moveSnitchFunction(){
-    //   bludgers.forEach(elem => {
-    //     elem.createSnitch();
-    //     elem.moveObstacle();
-    //   })
-    // }
-
-
-    function lifeScore(points) {
-      context.font = "18px serif";
-      context.fillStyle = "black";
-      context.fillText("Score: " + points, 350, 50);
+        snitch.forEach((elem, index) => {
+          elem.createSnitch();
+          elem.moveObstacle();
+          if (elem.y >= canvas.height){
+            snitch.splice(index, 1);
+        }
+      })
     }
 
     function checkCrash() {
@@ -155,15 +149,52 @@ window.onload = () => {
             lifes -= 1;
             console.log(lifes);
           })
+
+        // GAME OVER
         } else {
           console.log('GAME OVER');
           cancelAnimationFrame(id);
           bludgers.forEach((element, index) => {
             bludgers.splice(index, 1);
           })
+          context.font = '25px serif';
+          context.fillStyle = 'black';
+          context.fillText('GAME OVER', canvas.width/4, canvas.height/2);
         }
       }
     }
+
+    function checkCatch() {
+      let catched = snitch.some(function(snitch) {
+        return player.crashWith(snitch);
+      });
+    
+      if (catched) {
+        console.log('CATCH!');
+        if (lifes >= 0) {
+          snitch.forEach((element, index) => {
+            snitch.splice(index, 1);
+            lifes += 2;
+            console.log(lifes);
+          })
+        } 
+        if (lifes >= 15) {
+          console.log('YOU WON!');
+          cancelAnimationFrame(id);
+          context.font = '25px serif';
+          context.fillStyle = 'black';
+          context.fillText('YOU WON!', canvas.width/4, canvas.height/2);
+
+        } 
+    }
+    }
+
+    function lifeScore(points) {
+      context.font = "18px serif";
+      context.fillStyle = "black";
+      context.fillText("Score: " + points, 200, 50);
+    }
+
     
     // MOTOR
     function gameUpdate(){
@@ -182,22 +213,20 @@ window.onload = () => {
       context.fill();
       context.stroke();
 
-
-
-      // PRINT OBSTACULOS
+      // PRINT OBSTACULOS (bludger and snitch)
       createObstaclesFunction();
       moveObstaclesFunction();
-
-      // PRINT SNITCH
-      // createSnitch();
-      // moveSnitchFunction();
-
+      
+      
       // PRINT SCORE
       lifeScore(lifes);
-        
+      
+      
       // ANIMATION START
       id = requestAnimationFrame(gameUpdate);
-
+      
+      // WIN
+      checkCatch();
       // CRASH
       checkCrash();
     }
@@ -206,14 +235,15 @@ window.onload = () => {
     document.onkeydown = function(e) {
       switch (e.keyCode) {
         case 37: // left arrow
-              player.speedX -= 2;
+              player.speedX -= 4;
           break;
         case 39: // right arrow
-            player.speedX += 2;
+            player.speedX += 4;
           break;
         case 13: // enter
             if(!start) {
               gameUpdate();
+              hpsong.play();
               start = true;
             } else {
               window.location.reload()
