@@ -81,11 +81,11 @@ window.onload = () => {
         // }
       }
 
-      createSnitch(){
-        this.snitchImg = new Image();
-        this.snitchImg.src = './images/snitch.png';
-        context.drawImage(this.snitchImg, this.x, this.y, this.width,this.height);
-      }
+      // createSnitch(){
+      //   this.snitchImg = new Image();
+      //   this.snitchImg.src = './images/snitch.png';
+      //   context.drawImage(this.snitchImg, this.x, this.y, this.width,this.height);
+      // }
 
       moveObstacle(){
         this.y += 5;
@@ -118,13 +118,18 @@ window.onload = () => {
       if (frames % 100 === 0) {
         console.log('criado!')
         bludgers.push(new Obstacle(Math.floor(Math.random()*canvas.width)));
+        console.log(bludgers);
       };
     }
 
     function moveObstaclesFunction(){
-      bludgers.forEach(elem => {
+      bludgers.forEach((elem, index) => {
         elem.createObstacle();
         elem.moveObstacle();
+        // tira bludger da array quando sai do canvas
+        if (elem.y >= canvas.height){
+          bludgers.splice(index, 1);
+        }
       })
     }
 
@@ -159,8 +164,6 @@ window.onload = () => {
         if (lifes > 0) {
           bludgers.forEach((element, index) => {
             bludgers.splice(index, 1);
-            // element.height = 0;
-            // element.width = 0;
             lifes -= 1;
             console.log(lifes);
           })
@@ -169,9 +172,6 @@ window.onload = () => {
           cancelAnimationFrame(id);
           bludgers.forEach((element, index) => {
             bludgers.splice(index, 1);
-            // console.log(lifes -= 1);
-            // stopAnimating();
-            // return (lifes -= 1);
           })
         }
       }
@@ -189,7 +189,7 @@ window.onload = () => {
       context.beginPath();
       context.lineWidth = "3";
       context.lineStyle = 'black'
-      context.fillStyle = "red";
+      context.fillStyle = "rgb(181,78,86)";
       context.rect(player.x, player.y, player.width, player.height);
       context.fill();
       context.stroke();
@@ -210,11 +210,8 @@ window.onload = () => {
       // ANIMATION START
       id = requestAnimationFrame(gameUpdate);
 
-
       // CRASH
       checkCrash();
-
-      
     }
      
     
@@ -233,12 +230,11 @@ window.onload = () => {
             } else {
               window.location.reload()
             }
-      }
+        }
     }
 
     document.onkeyup = function(e) {
       player.speedX = 0;
       player.speedY = 0;
     }
- 
   }

@@ -1,25 +1,29 @@
 body {
     /* background-color: rgb(160, 64, 0); */
     /* padding: 0; */
+    background-image: url(./images/quidditch-field.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: space-between;
     text-align: center;
   }
 
   #canvas {
-    background-color: green;
+    background-color:rgb(170,210,114);
     width: 600px;
     height: 700px;
+    border: 2px solid black;
   }
   
   .game-intro {
     padding-top: 200px;
     width: 600px;
-    background-image: url(./images/Bludger.png);
+    /* background-image: url(./images/Bludger.png);
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: 4
-    00px;
+    background-position-y: 400px; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -30,9 +34,18 @@ body {
     /* height: 700px; */
   }
   
-  .game-intro p {
-    font-size: 18px;
-    font-family: "Verdana"
+  .game-intro h1 {
+    color: rgb(250,252,252);
+    background-color:rgb(151, 76, 64);
+    border: 1px solid black;
+    font-size: 45px;
+  }
+
+  .game-intro h2 {
+    color: rgb(250,252,252);
+    background-color:rgb(151, 76, 64);
+    border: 1px solid black;
+    font-size: 30px;
   }
 
   .snitch-img {
