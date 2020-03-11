@@ -3,11 +3,16 @@ window.onload = () => {
     let canvas = document.getElementById('canvas');
     let context = canvas.getContext("2d");
     let id = null;
-    
     let start = false;
 
     let hpsong = new Audio();
     hpsong.src = './images/Hedwig s Theme.mp3';
+
+    let winSound = new Audio();
+    winSound.src = './images/Wicked.mp3';
+
+    let lostSound = new Audio();
+    lostSound.src = './images/Youve lost.mp3'
 
 
     class Component {
@@ -31,14 +36,6 @@ window.onload = () => {
           context.drawImage(this.hpImgDir, this.x, this.y, this.width,this.height);
         }
       }
-
-      // rightPlayer(){
-      //   this.hpImg = new Image();
-      //   this.hpImg.src = './images/hpDir.png';
-      //   context.drawImage(this.hpImg, this.x, this.y, this.width,this.height);
-      // }
-      
-
     
       newPos(){
       if (this.x >= 0 && this.x <= canvas.width - this.width){
@@ -65,12 +62,11 @@ window.onload = () => {
     
       crashWith(obstacle) {
         return (
-          this.top() === obstacle.bottom() && this.right() > obstacle.left() && this.left() < obstacle.right()
-          // this.right() === obstacle.left() ||
-          // this.left() === obstacle.right()
+          this.top() === obstacle.bottom() && 
+          this.right() > obstacle.left() && 
+          this.left() < obstacle.right()
         )
-      }
-      
+      }  
     }
 
     class Obstacle {
@@ -82,12 +78,6 @@ window.onload = () => {
       }
 
       createObstacle(){ 
-        // context.beginPath();
-        // context.lineWidth = "6";
-        // context.fillStyle = "blue";
-        // context.rect(this.x, this.y, this.width, this.height);
-        // context.fill();
-        // }
         this.bludgerImg = new Image();
         this.bludgerImg.src = './images/Bludger.png';
         context.drawImage(this.bludgerImg, this.x, this.y, this.width, this.height);
@@ -96,7 +86,7 @@ window.onload = () => {
       createSnitch(){
         this.snitchImg = new Image();
         this.snitchImg.src = './images/black-snitch.png';
-        context.drawImage(this.snitchImg, this.x, this.y, this.width,this.height);
+        context.drawImage(this.snitchImg, this.x, this.y, this.width + 15, this.height + 15);
       }
 
       moveObstacle(){
@@ -120,19 +110,18 @@ window.onload = () => {
     let player = new Component(canvas.width/2, canvas.height - 70, 50, 50);
     let frames = 0;
     let bludgers = [];
-    let lifes = 5;
+    let lifes = 13;
     let snitch = [];
 
 
-    // criando novos obstaculos + guardando no array + movendo
+    // Criando novos obstaculos + guardando no array + movendo
     function createObstaclesFunction(){
       frames += 1;
       if (frames % 40 === 0) {
         bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
-        console.log('bludger criado!')
-        // console.log(bludgers);
+        console.log('bludger criado!');
       }
-      if (frames % 300 === 0) {
+      if (frames % 150 === 0) {
         console.log('snitch criado')
         setTimeout(function() {
           snitch.push(new Obstacle(Math.floor(Math.random()* (canvas.width - 25))))
@@ -174,13 +163,15 @@ window.onload = () => {
         // GAME OVER
         } else {
           console.log('GAME OVER');
+          hpsong.pause();
+          lostSound.play();
           cancelAnimationFrame(id);
           bludgers.forEach((element, index) => {
             bludgers.splice(index, 1);
           })
           context.font = '25px serif';
           context.fillStyle = 'black';
-          context.fillText('GAME OVER', canvas.width/4, canvas.height/2);
+          context.fillText("YOU'VE LOST OLD MAN", 6, canvas.height/2);
         }
       }
     }
@@ -201,19 +192,26 @@ window.onload = () => {
         } 
         if (lifes >= 15) {
           console.log('YOU WON!');
+          hpsong.pause();
+          winSound.play();
+          lifes = 15;
           cancelAnimationFrame(id);
           context.font = '25px serif';
           context.fillStyle = 'black';
-          context.fillText('YOU WON!', canvas.width/4, canvas.height/2);
+          context.fillText('WICKED!', canvas.width/3, canvas.height/2);
 
         } 
     }
     }
 
     function lifeScore(points) {
+      context.beginPath();
+      context.fillStyle = 'rgb(151, 76, 64)';
+      context.rect(220, 0, 80, 25);
+      context.fill();
       context.font = "18px serif";
-      context.fillStyle = "black";
-      context.fillText("Score: " + points, 200, 50);
+      context.fillStyle = "white";
+      context.fillText("Score: " + points, 225, 17);
     }
 
     
@@ -226,24 +224,11 @@ window.onload = () => {
       // PRINT O PLAYER
       player.createPlayer();
       player.newPos();
-      
-      // context.beginPath();
-      // context.lineWidth = "3";
-      // context.lineStyle = 'black'
-      // context.fillStyle = "rgb(181,78,86)";
-      // context.rect(player.x, player.y, player.width, player.height);
-      // context.fill();
-      // context.stroke();
 
       // PRINT OBSTACULOS (bludger and snitch)
       createObstaclesFunction();
       moveObstaclesFunction();
-      
-      
-      // PRINT SCORE
-      lifeScore(lifes);
-      
-      
+
       // ANIMATION START
       id = requestAnimationFrame(gameUpdate);
       
@@ -251,6 +236,8 @@ window.onload = () => {
       checkCatch();
       // CRASH
       checkCrash();
+      // PRINT SCORE
+      lifeScore(lifes);
     }
      
     
