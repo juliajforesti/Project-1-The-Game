@@ -1,78 +1,77 @@
 body {
-    padding-top: 100px;
-    background-image: url(./images/field.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-  }
+  padding-top: 100px;
+  background-image: url(./images/field.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
 
-  #canvas {
-    background-color:rgb(170,210,114);
+#canvas {
+  background-color:rgb(170,210,114);
 
-    border: 2px solid black;
-  }
+  border: 2px solid black;
+}
   
-  .game-intro {
-    margin-top: 10px;
-    width: 600px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
+.game-intro {
+  margin-top: 10px;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
   
-  .game-intro h1 {
-    color: rgb(250,252,252);
-    background-color:rgb(151, 76, 64);
-    border: 1px solid black;
-    font-size: 45px;
-    padding: 15px;
-  }
+.game-intro h1 {
+  color: rgb(250,252,252);
+  background-color:rgb(151, 76, 64);
+  border: 1px solid black;
+  font-size: 45px;
+  padding: 15px;
+}
 
-  .game-intro h2 {
-    color: rgb(250,252,252);
-    background-color:rgb(151, 76, 64);
-    border: 1px solid black;
-    font-size: 30px;
-    padding: 15px;
-  }
-  .game-intro h3 {
-    color: rgb(250,252,252);
-    background-color:rgb(151, 76, 64);
-    border: 1px solid black;
-    font-size: 20px;
-    padding: 15px
-  }
+.game-intro h2 {
+  color: rgb(250,252,252);
+  background-color:rgb(151, 76, 64);
+  border: 1px solid black;
+  font-size: 30px;
+  padding: 15px;
+}
+.game-intro h3 {
+  color: rgb(250,252,252);
+  background-color:rgb(151, 76, 64);
+  border: 1px solid black;
+  font-size: 20px;
+  padding: 15px
+}
 
-  .snitch-img {
-    width: 500px;
-  }
-  
-  /* .logo-img {
-    width: 150px;
-    position: relative;
-  } */
-  
-  .arrows-img {
-    width: 150px;
-  }
-  
-  body button {
-    font-size: 30px;
-    background-color: #870007;
-    color: #fff;
-    padding: 20px 40px;
-    border: 0;
-    /* box-shadow: 0; */
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-  
-  #game-board {
-      float: left;
-      padding: 20px 0px;
-  }
-  
+.snitch-img {
+  width: 500px;
+}
+
+/* .logo-img {
+  width: 150px;
+  position: relative;
+} */
+
+.arrows-img {
+  width: 150px;
+}
+
+body button {
+  font-size: 30px;
+  background-color: #870007;
+  color: #fff;
+  padding: 20px 40px;
+  border: 0;
+  /* box-shadow: 0; */
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+#game-board {
+    float: left;
+    padding: 20px 0px;
+}

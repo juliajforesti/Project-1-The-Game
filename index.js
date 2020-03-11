@@ -110,16 +110,23 @@ window.onload = () => {
     let player = new Component(canvas.width/2, canvas.height - 70, 50, 50);
     let frames = 0;
     let bludgers = [];
-    let lifes = 13;
+    let lifes = 1;
     let snitch = [];
 
 
     // Criando novos obstaculos + guardando no array + movendo
     function createObstaclesFunction(){
       frames += 1;
-      if (frames % 40 === 0) {
-        bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
-        console.log('bludger criado!');
+      if (lifes < 15){
+        if (frames % 40 === 0) {
+          bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
+          console.log('bludger criado!');
+        }
+      } else if (lifes >= 15){
+        if (frames % 20 === 0) {
+          bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
+          console.log('bludger criado!');
+        }
       }
       if (frames % 150 === 0) {
         console.log('snitch criado')
@@ -190,11 +197,11 @@ window.onload = () => {
             console.log(lifes);
           })
         } 
-        if (lifes >= 15) {
+        if (lifes >= 25) {
           console.log('YOU WON!');
           hpsong.pause();
           winSound.play();
-          lifes = 15;
+          lifes = 25;
           cancelAnimationFrame(id);
           context.font = '25px serif';
           context.fillStyle = 'black';
