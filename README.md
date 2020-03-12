@@ -1,6 +1,6 @@
 # Project-1-The-Game_QUIDDITCH_PRACTICE
 *Quidditch Practice* is a game built in HTML, CSS, canvas and JavaScript.
-(LINK)
+> **https://juliajforesti.github.io/Project-1-The-Game/**
 
 ## INSTALLATION
 * Clone or download this project
@@ -9,8 +9,8 @@
 
 ## ABOUT THE GAME
 Quidditch is the most popular game in the Wizarding World. It's time to practice!
-The bludgers are brown, big, heavy balls that are thrown at you and will harm you if they hit you - try to escape them!
-The snitch is a small and very fast flying ball and wins you points - try to catch as much as you can!
+* The bludgers are brown, big, heavy balls that are thrown at you and will harm you if they hit you - try to escape them!
+* The snitch is a small and very fast flying ball and wins you points - try to catch as much as you can!
 
 ## GAME INSTRUCTIONS
 * Press ENTER to START / STOP the game
@@ -23,7 +23,7 @@ The snitch is a small and very fast flying ball and wins you points - try to cat
 ## CONTRIBUTION
 >This is a free software, feel free to contribute in any way you want
 
-1. Fork it (<https://>)
+1. Fork it
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
