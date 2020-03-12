@@ -118,12 +118,12 @@ window.onload = () => {
     function createObstaclesFunction(){
       frames += 1;
       if (lifes < 15){
-        if (frames % 40 === 0) {
+        if (frames % 50 === 0) {
           bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
           console.log('bludger criado!');
         }
       } else if (lifes >= 15){
-        if (frames % 20 === 0) {
+        if (frames % 35 === 0) {
           bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
           console.log('bludger criado!');
         }
@@ -217,7 +217,7 @@ window.onload = () => {
       context.rect(220, 0, 80, 25);
       context.fill();
       context.font = "18px serif";
-      context.fillStyle = "white";
+      context.fillStyle = "rgb(242,222,13)";
       context.fillText("Score: " + points, 225, 17);
     }
 

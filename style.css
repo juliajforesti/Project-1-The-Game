@@ -53,11 +53,6 @@ body {
   width: 500px;
 }
 
-/* .logo-img {
-  width: 150px;
-  position: relative;
-} */
-
 .arrows-img {
   width: 150px;
 }
@@ -68,7 +63,6 @@ body button {
   color: #fff;
   padding: 20px 40px;
   border: 0;
-  /* box-shadow: 0; */
   border-radius: 5px;
   margin-bottom: 20px;
 }
