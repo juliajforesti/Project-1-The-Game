@@ -41,9 +41,9 @@ window.onload = () => {
       if (this.x >= 0 && this.x <= canvas.width - this.width){
         this.x += this.speedX;
       } else if (this.x < 0){
-        this.x += 1;
+        this.x = 1;
       } else if (this.x >= canvas.width - this.width) {
-        this.x -= 1;
+        this.x = canvas.width - 50;
       }
       }
 
@@ -241,11 +241,11 @@ window.onload = () => {
     document.onkeydown = function(e) {
       switch (e.keyCode) {
         case 37: // left arrow
-        player.speedX -= 4;
+        player.speedX = -4;
               player.direction = 'l'
           break;
         case 39: // right arrow
-        player.speedX += 4;
+        player.speedX = 4;
             player.direction = 'r'
           break;
         case 13: // enter

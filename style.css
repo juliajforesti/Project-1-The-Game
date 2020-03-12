@@ -3,10 +3,10 @@ body {
   background-image: url(./images/field.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
   display: flex;
   justify-content: space-evenly;
   text-align: center;
+  align-items: center;
 }
 
 #canvas {
@@ -16,42 +16,45 @@ body {
 }
   
 .game-intro {
-  /* margin-top: -20px; */
+  background-color:rgba(151, 76, 64);
+  border-radius: 20px;
   width: 600px;
   height: 400px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  top: 100px;
 }
   
 .game-intro h1 {
   font-family: 'Jolly Lodger', cursive;
   letter-spacing: 3px;
   color: rgb(242,222,13);
-  background-color:rgba(151, 76, 64, .9);
-  border-radius: 20px;
-  font-size: 50px;
-  padding: 15px;
+  text-shadow: 2px 2px black;
+  font-size: 60px;
+  border-bottom: 2px solid rgb(242,222,13);
+  width: 400px;
+  padding-bottom: 15px;
 }
 
 .game-intro h2 {
   font-family: 'Jolly Lodger', cursive;
   letter-spacing: 5px;
   color: rgb(242,222,13);
-  background-color:rgba(151, 76, 64, .9);
+  text-shadow: 2px 2px black;
+  background-color:rgba(151, 76, 64);
   border-radius: 20px;
   font-size: 30px;
-  padding: 15px;
 }
 .game-intro h3 {
   font-family: 'Jolly Lodger', cursive;
   letter-spacing: 5px;
   color: rgb(242,222,13);
-  background-color:rgba(151, 76, 64, .9);
+  text-shadow: 2px 2px black;
+  background-color:rgba(151, 76, 64);
   border-radius: 20px;
   font-size: 25px;
-  padding: 15px
+  padding-bottom: 40px;
 }
 
 .snitch-img {
@@ -62,17 +65,6 @@ body {
   width: 150px;
 }
 
-body button {
-  font-size: 30px;
-  background-color: #870007;
-  color: #fff;
-  padding: 20px 40px;
-  border: 0;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
 #game-board {
     float: left;
-    padding: 20px 0px;
 }
