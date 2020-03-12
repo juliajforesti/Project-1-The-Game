@@ -120,16 +120,13 @@ window.onload = () => {
       if (lifes < 15){
         if (frames % 50 === 0) {
           bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
-          console.log('bludger criado!');
         }
       } else if (lifes >= 15){
         if (frames % 35 === 0) {
           bludgers.push(new Obstacle(Math.floor(Math.random()*(canvas.width - 25))));
-          console.log('bludger criado!');
         }
       }
       if (frames % 150 === 0) {
-        console.log('snitch criado')
         setTimeout(function() {
           snitch.push(new Obstacle(Math.floor(Math.random()* (canvas.width - 25))))
         }, 2000)
@@ -159,17 +156,14 @@ window.onload = () => {
       });
     
       if (crashed) {
-        console.log('CRASH');
         if (lifes > 0) {
           bludgers.forEach((element, index) => {
             bludgers.splice(index, 1);
             lifes -= 1;
-            console.log(lifes);
           })
 
         // GAME OVER
         } else {
-          console.log('GAME OVER');
           hpsong.pause();
           lostSound.play();
           cancelAnimationFrame(id);
@@ -189,16 +183,13 @@ window.onload = () => {
       });
     
       if (catched) {
-        console.log('CATCH!');
         if (lifes >= 0) {
           snitch.forEach((element, index) => {
             snitch.splice(index, 1);
             lifes += 2;
-            console.log(lifes);
           })
         } 
         if (lifes >= 25) {
-          console.log('YOU WON!');
           hpsong.pause();
           winSound.play();
           lifes = 25;
@@ -206,7 +197,6 @@ window.onload = () => {
           context.font = '25px serif';
           context.fillStyle = 'black';
           context.fillText('WICKED!', canvas.width/3, canvas.height/2);
-
         } 
     }
     }
