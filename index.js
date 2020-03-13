@@ -54,17 +54,14 @@ window.onload = () => {
         return this.x + this.width;
       }
       top() {
-        return this.y;
-      }
-      bottom() {
-        return this.y + this.height;
+        return this.y + 10;
       }
     
       crashWith(obstacle) {
         return (
           this.top() === obstacle.bottom() && 
-          this.right() > obstacle.left() && 
-          this.left() < obstacle.right()
+          this.right() >= obstacle.left() && 
+          this.left() <= obstacle.right()
         )
       }  
     }
