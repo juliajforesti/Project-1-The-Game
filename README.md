@@ -1,6 +1,7 @@
 # Project-1-The-Game_QUIDDITCH_PRACTICE
 *Quidditch Practice* is a game built in HTML, CSS, canvas and JavaScript.
-> **https://juliajforesti.github.io/Project-1-The-Game/**
+
+> Click [HERE](https://juliajforesti.github.io/Project-1-The-Game/) to play!
 
 ## INSTALLATION
 * Clone or download this project
