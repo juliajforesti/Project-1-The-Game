@@ -15,7 +15,7 @@ window.onload = () => {
     lostSound.src = './images/Youve lost.mp3'
 
 
-    class Component {
+    class Player {
       constructor(x, y, width, height){
           this.x = x;
           this.y = y;
@@ -104,7 +104,7 @@ window.onload = () => {
       }
     }
 
-    let player = new Component(canvas.width/2, canvas.height - 70, 50, 50);
+    let player = new Player(canvas.width/2, canvas.height - 70, 50, 50);
     let frames = 0;
     let bludgers = [];
     let lifes = 1;
